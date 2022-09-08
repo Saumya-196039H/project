@@ -1,30 +1,60 @@
-#Merge sort
-def merge_sort(unsorted_list):
-   if len(unsorted_list) <= 1:
-      return unsorted_list
-# Find the middle point and devide it
-   middle = len(unsorted_list) // 2
-   left_list = unsorted_list[:middle]
-   right_list = unsorted_list[middle:]
+# Python program for implementation of MergeSort
+def mergeSort(arr):
+	if len(arr) > 1:
 
-   left_list = merge_sort(left_list)
-   right_list = merge_sort(right_list)
-   return list(merge(left_list, right_list))
+		# Finding the mid of the array
+		mid = len(arr)//2
 
-# Merge the sorted halves
-def merge(left_half,right_half):
-   res = []
-   while len(left_half) != 0 and len(right_half) != 0:
-      if left_half[0] < right_half[0]:
-         res.append(left_half[0])
-         left_half.remove(left_half[0])
-      else:
-         res.append(right_half[0])
-         right_half.remove(right_half[0])
-   if len(left_half) == 0:
-      res = res + right_half
-   else:
-      res = res + left_half
-   return res
-unsorted_list = [64, 34, 25, 12, 22, 11, 90]
-print(merge_sort(unsorted_list))
+		# Dividing the array elements
+		L = arr[:mid]
+
+		# into 2 halves
+		R = arr[mid:]
+
+		# Sorting the first half
+		mergeSort(L)
+
+		# Sorting the second half
+		mergeSort(R)
+
+		i = j = k = 0
+
+		# Copy data to temp arrays L[] and R[]
+		while i < len(L) and j < len(R):
+			if L[i] < R[j]:
+				arr[k] = L[i]
+				i += 1
+			else:
+				arr[k] = R[j]
+				j += 1
+			k += 1
+
+		# Checking if any element was left
+		while i < len(L):
+			arr[k] = L[i]
+			i += 1
+			k += 1
+
+		while j < len(R):
+			arr[k] = R[j]
+			j += 1
+			k += 1
+
+# Code to print the list
+
+
+def printList(arr):
+	for i in range(len(arr)):
+		print(arr[i], end=" ")
+	print()
+
+
+# Driver Code
+if __name__ == '__main__':
+	arr = [12, 11, 13, 5, 6, 7]
+	print("Given array is", end="\n")
+	printList(arr)
+	mergeSort(arr)
+	print("Sorted array is: ", end="\n")
+	printList(arr)
+
