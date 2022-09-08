@@ -1,3 +1,4 @@
+#bubble sort
 def b_sort(list):
 
 for iter_num in range(len(list)-1,0,-1):
