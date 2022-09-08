@@ -1,12 +1,16 @@
-def bubblesort(list):
+def b_sort(list):
 
-# Swap the elements to arrange in order
-   for iter_num in range(len(list)-1,0,-1):
-      for idx in range(iter_num):
-         if list[idx]>list[idx+1]:
+for iter_num in range(len(list)-1,0,-1):
+    for idx in range(iter_num):
+
+        if list[idx] > list[idx+1]:
             temp = list[idx]
             list[idx] = list[idx+1]
             list[idx+1] = temp
-list = [19,2,31,45,6,11,121,27]
-bubblesort(list)
+
+str_input= input("Enter numbers:  ")
+list = [int(x) for x in str_input.split()]
+
+b_sort(list)
+print('sorted elements are: ')
 print(list)
